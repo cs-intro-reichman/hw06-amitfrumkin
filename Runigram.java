@@ -18,9 +18,11 @@ public class Runigram {
 		Color[][] imageOut;
 
 		// Tests the horizontal flipping of an image:
-		imageOut = flippedVertically(tinypic);
+		imageOut = grayScaled(tinypic);
 		System.out.println();
 		print(imageOut);
+
+		
 		
 		//// Write here whatever code you need in order to test your work.
 		//// You can reuse / overide the contents of the imageOut array.
@@ -111,8 +113,8 @@ public class Runigram {
 		
 		Color[][] fllipedImage = new Color[numRows][numCols];
 
-		for (int i = 0; i < image.length; i++) {
-            for (int j = 0; j < image[0].length; j++) {
+		for (int i = 0; i < numRows; i++) {
+            for (int j = 0; j < numCols; j++) {
 				fllipedImage [i][j] = image [(numRows-1)-i][j];
 			}
 		}
@@ -123,16 +125,37 @@ public class Runigram {
 	// lum = 0.299 * r + 0.587 * g + 0.114 * b, and returns a Color object consisting
 	// the three values r = lum, g = lum, b = lum.
 	public static Color luminance(Color pixel) {
-		//// Replace the following statement with your code
-		return null;
+		
+		int r = pixel.getRed() ;
+		int g = pixel.getGreen() ;
+		int b = pixel.getBlue() ;
+
+		int lum = (int) (0.299 * r + 0.587 * g + 0.114 * b) ; 
+
+		Color luminance = new Color (lum, lum ,lum);
+
+		return luminance;
 	}
 	
 	/**
 	 * Returns an image which is the grayscaled version of the given image.
 	 */
 	public static Color[][] grayScaled(Color[][] image) {
-		//// Replace the following statement with your code
-		return null;
+		
+		int numRows = image.length ;
+		int numCols = image[0].length ; 
+		
+		Color[][] grayImage = new Color[numRows][numCols];
+
+		for (int i = 0; i < numRows; i++) {
+            for (int j = 0; j < numCols; j++) {
+				Color pixel = image [i][j] ;
+				grayImage [i][j] = luminance(pixel) ;
+			}
+		}
+
+
+		return grayImage;
 	}	
 	
 	/**
