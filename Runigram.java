@@ -71,8 +71,8 @@ public class Runigram {
 	// we can apply the function and then use this function to print the resulting image.
 	private static void print(Color[][] image) {
 
-		for (int i = 1; i < image.length; i++) {
-            for (int j = 1; j < image[i].length; j++) {
+		for (int i = 0; i < image.length; i++) {
+            for (int j = 0; j < image[i].length; j++) {
 				Color c = image[i][j];
 				print(c);
             }
