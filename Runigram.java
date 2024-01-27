@@ -166,8 +166,8 @@ public class Runigram {
 
 		int h = image.length ;
 		int w = image[0].length ; 
-		double scaeldH = (double) h/height   ; // 4/5 0
-		double scaledW= (double) w/width ; // 4/3 1
+		double scaeldH = (double) h/height   ; 
+		double scaledW= (double) w/width ; 
 
 		Color[][] scaledImage = new Color[height][width];  
 
@@ -217,7 +217,7 @@ public class Runigram {
 		for (int i = 0; i < blendImage.length; i++) {
             for (int j = 0; j < blendImage[0].length; j++) {
 				Color c1 = image1 [i][j] ;
-				Color c2 = image1 [i][j] ; 
+				Color c2 = image2 [i][j] ; 
 				blendImage [i][j] = blend(c1,c2,alpha) ;
 			}
 		}
@@ -233,7 +233,20 @@ public class Runigram {
 	 * of the source image.
 	 */
 	public static void morph(Color[][] source, Color[][] target, int n) {
-		//// Replace this comment with your code
+
+		if(source.length != target.length || source[0].length != target[0].length){
+			target = scaled(target,source[0].length,source.length);
+		}
+
+
+		for (int i = 0; i <= n; i++) {
+			 double alpha = (double) ((n-i)/n) ; 
+			 Color[][] morphImage = blend(source,target,alpha) ;
+			 display(morphImage);
+			 StdDraw.pause(500); 
+		}
+
+
 	}
 	
 	/** Creates a canvas for the given image. */
